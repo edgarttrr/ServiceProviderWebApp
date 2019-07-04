@@ -8,6 +8,7 @@ import com.test.app.aws.UserRepository;
 import com.test.app.aws.io.entity.UserEntity;
 import com.test.app.aws.service.UserService;
 import com.test.app.aws.shared.dto.UserDto;
+import com.test.app.aws.shared.dto.Utils;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,13 +16,20 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	Utils utils;
+	
 	@Override
 	public UserDto createUser(UserDto user) {
+		
+		
+		if(userRepository.findByEmail(user.getEmail()) != null) throw new RuntimeException("record already exists");
 		
 		UserEntity userEntity = new UserEntity();
 		BeanUtils.copyProperties(user, userEntity);
 		
-		userEntity.setEncryptedPassword("test");
+		String publicUserId = utils.generateUserId(30);
+		userEntity.setEncryptedPassword(publicUserId);
 		userEntity.setUserId("testUserId");
 		
 		UserEntity storedUserDetails = userRepository.save(userEntity);
@@ -29,7 +37,7 @@ public class UserServiceImpl implements UserService {
 		UserDto returnValue = new UserDto();
 		BeanUtils.copyProperties(storedUserDetails, returnValue);
 		
-		return null;
+		return returnValue;
 	}
 
 }
