@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 		
 		String publicUserId = utils.generateUserId(30);
 		userEntity.setEncryptedPassword(publicUserId);
-		userEntity.setUserId("testUserId");
+		userEntity.setUserId(publicUserId);
 		
 		UserEntity storedUserDetails = userRepository.save(userEntity);
 		

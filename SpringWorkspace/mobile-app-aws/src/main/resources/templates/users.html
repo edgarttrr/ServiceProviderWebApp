@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+    <form id ="submitForm" action="#" th:action="@{/users}" th:object="${users}" onsubmit= false >
+        <p>firstName: <input type="text" id="firstName" th:field="*{firstName}" /></p>
+        <p>lastName: <input type="text" id="lastName" th:field="*{lastName}" /></p>
+        <p>email: <input type="text" id="email" th:field="*{email}" /></p>
+        <p>password: <input type="text" id="password" th:field="*{password}" /></p>
+        <p><input type="button" id = "submit1" value="Submit3"  /> 
+        <input type="reset" value="Reset" /></p>
+    </form>
+    
+  <script>
+    function showAlert(){
+    	alert("here 0");
+    
+    
+    
+    
+    }
+    
+  
+    jQuery(document).ready(function($) {
+    	 
+		$("#submit1").click(function(){
+			
+			showAlert();
+			var employeeData = {};
+			employeeData["firstName"] = $("#firstName").val();
+			employeeData["lastName"] = $("#lastName").val();
+			employeeData["email"] = $("#email").val();
+			employeeData["password"] = $("#password").val();
+			
+			
+			$.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "/users",
+				data : JSON.stringify(employeeData),
+				dataType : 'json',				
+				success : function(data) {
+					
+					alert("here 1");
+				}
+			});
+		});
+ 
+	});
+    </script> 
+</body>
+</html>

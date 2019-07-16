@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"
+	type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+	<form id="submitForm" action="#" th:action="@{/users}"
+		th:object="${users}" onsubmit="false">
+		<p>
+			BusinessName: <input type="text" id="businessName" th:field="*{businessName}" />
+		</p>
+		<p>
+			Street address: <input type="text" id="streetName" th:field="*{streetName}" />
+		</p>
+		
+		<p>
+			City: <input type="text" id="city" th:field="*{city}" />
+		</p>
+		
+		<p>
+			ZipCode: <input type="text" id="zipCode" th:field="*{zipCode}" />
+		</p>
+		
+		<p>
+			Phone Number: <input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
+		</p>
+		<p>
+			Email: <input type="text" id="email" th:field="*{email}" />
+		</p>
+		
+		<p>
+			Yelp Link: <input type="text" id="yelpLink" th:field="*{yelpLink}" />
+		</p>
+
+		<p>
+			Cost Estimator: <input type="text" id="cost" th:field="*{cost}" />
+		</p>
+		<p>
+			Business Category: <input type="text" id="category" th:field="*{category}" />
+		</p>
+		
+		<p>
+			Password: <input type="text" id="password" th:field="*{password}" />
+		</p>
+		
+		<p>
+			<input type="button" id="submit1" value="Submit3" /> <input
+				type="reset" value="Reset" />
+		</p>
+		
+		<p>
+			<input type="button" id="submit2" value="testpage" onclick="window.location.href = 'http://localhost:8080/welcome';" /> <input/>
+		</p>
+	</form>
+
+	<script type="text/javascript">
+   
+	function showAlert(){
+    	alert("here 0");
+  
+    }
+    
+    jQuery(document).ready(function($) {
+    	 
+		$("#submit1").click(function(){
+			
+			showAlert();
+			var serviceProviderData = {};
+			serviceProviderData["businessName"] = $("#businessName").val();
+			serviceProviderData["streetName"] = $("#streetName").val();
+			serviceProviderData["city"] = $("#city").val();
+			serviceProviderData["zipCode"] = $("#zipCode").val();
+			serviceProviderData["phoneNumber"] = $("#phoneNumber").val();
+			serviceProviderData["email"] = $("#email").val();
+			serviceProviderData["yelpLink"] = $("#yelpLink").val();
+			serviceProviderData["cost"] = $("#cost").val();
+			serviceProviderData["category"] = $("#category").val();
+			serviceProviderData["password"] = $("#password").val();
+		
+			
+			
+			$.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "/users",
+				data : JSON.stringify(serviceProviderData),
+				dataType : 'json',				
+				success : function(data) {
+					
+					alert("here 1");
+				}
+			});
+		});
+ 
+	});</script>
+</body>
+</html>
