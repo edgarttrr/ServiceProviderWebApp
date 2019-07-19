@@ -26,28 +26,22 @@ import com.appInNowBeta.app.ws.ui.model.response.User;
 
 
 
-
-
-
-
-
-
 public class UserController {
 	
 	@Autowired
 	UserService userService;
 	
 	@GetMapping("/users")
-	public String getForm(Model model)
+	public String getForm()
 	{
-		model.addAttribute("users",new UserDetailsRequestModel());
+		
 		return "users.html";
 	}
 	
 	
 	
 	@GetMapping("/welcome")
-	public String getForm()
+	public String getWelcome()
 	{
 		
 		return "welcome.html";

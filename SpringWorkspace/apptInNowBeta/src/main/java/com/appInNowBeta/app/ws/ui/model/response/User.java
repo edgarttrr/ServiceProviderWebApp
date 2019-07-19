@@ -3,8 +3,8 @@ package com.appInNowBeta.app.ws.ui.model.response;
 public class User {
 
 	private String userId;
-	private String firstName;
-	private String lastName;
+	private String businessName;
+	private String cost;
 	private String email;
 
 	public String getUserId() {
@@ -15,20 +15,20 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getBusinessNam() {
+		return businessName;
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.businessName = firstName;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return cost;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.cost = lastName;
 	}
 
 	public String getEmail() {

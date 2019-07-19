@@ -8,43 +8,42 @@
 </head>
 <body>
 	<h1>Form</h1>
-	<form id="submitForm" action="#" th:action="@{/users}"
-		th:object="${users}" onsubmit="false">
+	<form id="submitForm"  onsubmit="false">
 		<p>
-			BusinessName: <input type="text" id="businessName" th:field="*{businessName}" />
+			BusinessName: <input type="text" id="businessName" />
 		</p>
 		<p>
-			Street address: <input type="text" id="streetName" th:field="*{streetName}" />
-		</p>
-		
-		<p>
-			City: <input type="text" id="city" th:field="*{city}" />
+			Street address: <input type="text" id="streetName" />
 		</p>
 		
 		<p>
-			ZipCode: <input type="text" id="zipCode" th:field="*{zipCode}" />
+			City: <input type="text" id="city" />
 		</p>
 		
 		<p>
-			Phone Number: <input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
-		</p>
-		<p>
-			Email: <input type="text" id="email" th:field="*{email}" />
+			ZipCode: <input type="text" id="zipCode" />
 		</p>
 		
 		<p>
-			Yelp Link: <input type="text" id="yelpLink" th:field="*{yelpLink}" />
+			Phone Number: <input type="text" id="phoneNumber" />
+		</p>
+		<p>
+			Email: <input type="text" id="email" />
+		</p>
+		
+		<p>
+			Yelp Link: <input type="text" id="yelpLink" />
 		</p>
 
 		<p>
-			Cost Estimator: <input type="text" id="cost" th:field="*{cost}" />
+			Cost Estimator: <input type="text" id="cost"  />
 		</p>
 		<p>
-			Business Category: <input type="text" id="category" th:field="*{category}" />
+			Business Category: <input type="text" id="category"  />
 		</p>
 		
 		<p>
-			Password: <input type="text" id="password" th:field="*{password}" />
+			Password: <input type="text" id="password"  />
 		</p>
 		
 		<p>
@@ -53,7 +52,7 @@
 		</p>
 		
 		<p>
-			<input type="button" id="submit2" value="testpage" onclick="window.location.href = 'http://localhost:8080/welcome';" /> <input/>
+			<input type="button" id="submit2" value="Welcome Page" onclick="window.location.href = 'http://localhost:8080/welcome';" /> <input/>
 		</p>
 	</form>
 

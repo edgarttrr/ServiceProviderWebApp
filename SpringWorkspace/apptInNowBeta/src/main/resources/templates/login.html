@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"
+	type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+	<form id="submitLogin"  onsubmit="false">
+		
+		<p>
+			Email: <input type="text" id="email"  />
+		</p>
+		
+		
+		<p>
+			Password: <input type="text" id="password"  />
+		</p>
+		
+		<p>
+			<input type="button" id="submit1" value="Submit3" /> <input
+				type="reset" value="Reset" />
+		</p>
+		
+		<p>
+			<input type="button" id="submit2" value="Welcome Page" onclick="window.location.href = 'http://localhost:8080/welcome';" /> <input/>
+		</p>
+	</form>
+	
+	<script type="text/javascript">
+   
+	function showAlert(){
+    	alert("here 0");
+  
+    }
+    
+    jQuery(document).ready(function($) {
+    	 
+		$("#submit1").click(function(){
+			
+			showAlert();
+			var serviceLoginData = {};
+
+			serviceLoginData["email"] = $("#email").val();
+
+			serviceLoginData["password"] = $("#password").val();
+		
+			
+			
+			$.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "/users",
+				data : JSON.stringify(serviceLoginData),
+				dataType : 'json',				
+				success : function(data) {
+					
+					alert("here 1");
+				}
+			});
+		});
+ 
+	});</script>
+</body>
+</html>
