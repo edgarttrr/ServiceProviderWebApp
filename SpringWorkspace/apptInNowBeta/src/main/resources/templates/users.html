@@ -54,6 +54,10 @@
 		<p>
 			<input type="button" id="submit2" value="Welcome Page" onclick="window.location.href = 'http://localhost:8080/welcome';" /> <input/>
 		</p>
+		
+		<p>
+			<input type="button" id="submit2" value="LOGIN Page" onclick="window.location.href = 'http://localhost:8080/welcome/login';" /> <input/>
+		</p>
 	</form>
 
 	<script type="text/javascript">
@@ -85,7 +89,7 @@
 			$.ajax({
 				type : "POST",
 				contentType : "application/json",
-				url : "/users",
+				url : "/welcome/users",
 				data : JSON.stringify(serviceProviderData),
 				dataType : 'json',				
 				success : function(data) {

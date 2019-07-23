@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html >
 <head>
 <title>Getting Started: Handling Form Submission</title>
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"
@@ -20,7 +20,7 @@
 		</p>
 		
 		<p>
-			<input type="button" id="submit1" value="Submit3" /> <input
+			<input type="button" id="submit1" value="Login" /> <input
 				type="reset" value="Reset" />
 		</p>
 		
@@ -52,7 +52,7 @@
 			$.ajax({
 				type : "POST",
 				contentType : "application/json",
-				url : "/users",
+				url : "/login",
 				data : JSON.stringify(serviceLoginData),
 				dataType : 'json',				
 				success : function(data) {

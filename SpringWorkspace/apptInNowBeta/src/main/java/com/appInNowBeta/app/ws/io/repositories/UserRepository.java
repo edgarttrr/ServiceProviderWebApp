@@ -1,4 +1,4 @@
-package com.appInNowBeta.app.ws;
+package com.appInNowBeta.app.ws.io.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -10,5 +10,6 @@ import com.appInNowBeta.app.ws.io.entity.UserEntity;
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
 	
 	UserEntity findByEmail(String email);
+	UserEntity findByUserId(String userId);
 
 }

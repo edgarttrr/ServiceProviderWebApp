@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.appInNowBeta.app.ws.security.AppProperties;
+
 @EnableAutoConfiguration
 @SpringBootApplication
 public class ApptInNowBetaApplication {
@@ -17,6 +19,15 @@ public class ApptInNowBetaApplication {
 	@Bean 
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean SpringApplicationContext springApplicationContext() {
+		return new SpringApplicationContext();
+	}
+	
+	@Bean(name="AppProperties")
+	public AppProperties getAppProperties() {
+		return new AppProperties();
 	}
 
 }

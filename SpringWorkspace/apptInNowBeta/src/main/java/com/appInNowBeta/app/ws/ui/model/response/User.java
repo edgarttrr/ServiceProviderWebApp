@@ -6,6 +6,7 @@ public class User {
 	private String businessName;
 	private String cost;
 	private String email;
+	
 
 	public String getUserId() {
 		return userId;
@@ -15,20 +16,20 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getBusinessNam() {
+	public String getBusinessName() {
 		return businessName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.businessName = firstName;
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
 	}
 
-	public String getLastName() {
+	public String getCost() {
 		return cost;
 	}
 
-	public void setLastName(String lastName) {
-		this.cost = lastName;
+	public void setCost(String cost) {
+		this.cost = cost;
 	}
 
 	public String getEmail() {

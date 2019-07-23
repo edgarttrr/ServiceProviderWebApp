@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.appInNowBeta.app.ws.service.UserService;
@@ -29,13 +30,23 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and()
         .csrf().disable().authorizeRequests()
-        .antMatchers(HttpMethod.POST, "/users")
+        .antMatchers(HttpMethod.POST, "/welcome/users")
         .permitAll()
-        .antMatchers(HttpMethod.GET, "/users")
+        .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+        .permitAll()
+        .antMatchers(HttpMethod.GET, "/welcome/login")
+        .permitAll()
+        .antMatchers(HttpMethod.GET, "/welcome/login/McNlUyrL3OtWQQg1nRs4mZVcC99RjW")
+        .permitAll()
+        .antMatchers(HttpMethod.GET, "/welcome/users")
         .permitAll()
         .antMatchers(HttpMethod.GET, "/welcome")
         .permitAll()
-        .anyRequest().authenticated();
+        .anyRequest().authenticated().and()
+        .addFilter(getAuthenticationFilter())
+        .addFilter(new AuthorizationFilter(authenticationManager()))
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         
         
     }
@@ -45,7 +56,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
     
-  
-	
+    protected AuthenticationFilter getAuthenticationFilter() throws Exception {
+	    final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
+	    filter.setFilterProcessesUrl("/welcome/login");
+	    return filter;
+	}
+    
+ 
     
 }
