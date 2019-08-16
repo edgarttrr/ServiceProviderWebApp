@@ -1,5 +1,6 @@
 package com.appInNowBeta.app.ws.security;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.appInNowBeta.app.ws.service.UserService;
 
+@Configuration
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter{
 
@@ -24,19 +26,30 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
     
     
     
-    
+   
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and()
         .csrf().disable().authorizeRequests()
+        // ignore all URLs that start with /resources/ or /static/
+        .antMatchers(HttpMethod.GET,"/css/**", "/static/**","/js/**")
+        .permitAll()
         .antMatchers(HttpMethod.POST, "/welcome/users")
         .permitAll()
-        .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+        .antMatchers(HttpMethod.POST, "/welcome/calendar")
+        .permitAll()
+        .antMatchers(HttpMethod.POST, "/welcome/signIn")
         .permitAll()
         .antMatchers(HttpMethod.GET, "/welcome/login")
         .permitAll()
-        .antMatchers(HttpMethod.GET, "/welcome/login/McNlUyrL3OtWQQg1nRs4mZVcC99RjW")
+        .antMatchers(HttpMethod.GET, "/welcome/calendar")
+        .permitAll()
+        .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+        .permitAll()
+        .antMatchers(HttpMethod.GET, "/welcome/signIn")
+        .permitAll()
+        .antMatchers(HttpMethod.GET, "/welcome/service")
         .permitAll()
         .antMatchers(HttpMethod.GET, "/welcome/users")
         .permitAll()
@@ -47,20 +60,40 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
         .addFilter(new AuthorizationFilter(authenticationManager()))
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+ 
+
+        
         
         
     }
+    
+    
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
     
+    
+    
     protected AuthenticationFilter getAuthenticationFilter() throws Exception {
-	    final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
+//    	if (HttpMethod.POST != null) {
+//    		  
+    	final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
 	    filter.setFilterProcessesUrl("/welcome/login");
 	    return filter;
+//    	}else {
+//    		final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
+//    	    filter.setFilterProcessesUrl("/welcome/nothing");
+//    	    return filter;
+//    	}
+    	
+    	
 	}
+    
+    
+    
+  
     
  
     

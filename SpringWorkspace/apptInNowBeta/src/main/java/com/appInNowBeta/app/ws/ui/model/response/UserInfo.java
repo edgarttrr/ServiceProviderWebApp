@@ -1,6 +1,6 @@
 package com.appInNowBeta.app.ws.ui.model.response;
 
-public class User {
+public class UserInfo {
 
 	private String userId;
 	private String businessName;

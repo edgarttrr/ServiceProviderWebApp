@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.appInNowBeta.app.ws.io.entity.UserEntity;
 import com.appInNowBeta.app.ws.io.repositories.UserRepository;
 import com.appInNowBeta.app.ws.service.UserService;
+import com.appInNowBeta.app.ws.shared.dto.CalendarDto;
 import com.appInNowBeta.app.ws.shared.dto.UserDto;
 import com.appInNowBeta.app.ws.shared.dto.Utils;
 
@@ -54,7 +55,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override 
-	public UserDto getUser(String email) {
+	public UserDto getUserByEmail(String email) {
 		
 		
 		UserEntity userEntity = userRepository.findByEmail(email);
@@ -85,6 +86,12 @@ public class UserServiceImpl implements UserService {
 		
 		BeanUtils.copyProperties(userEntity, returnValue);
 		return returnValue;
+	}
+
+	@Override
+	public CalendarDto createCalendar(CalendarDto user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
