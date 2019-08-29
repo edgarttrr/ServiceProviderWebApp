@@ -6,6 +6,10 @@ public class UserInfo {
 	private String businessName;
 	private String cost;
 	private String email;
+	private String phoneNumber;
+	private String yelpLink;
+	private String zipCode;
+	private String category;
 	
 
 	public String getUserId() {
@@ -38,6 +42,39 @@ public class UserInfo {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public String getYelpLink() {
+		return yelpLink;
+	}
+
+	public void setYelpLink(String yelpLink) {
+		this.yelpLink = yelpLink;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

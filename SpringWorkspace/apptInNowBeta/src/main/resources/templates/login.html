@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html >
 <head>
 <title>Getting Started: Handling Form Submission</title>
-<script src="https://code.jquery.com/jquery-1.12.3.min.js"
-	type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js" type="text/javascript"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link rel= "stylesheet" type="text/css" href = "/css/custom.css"/>
@@ -15,38 +14,35 @@
 	<form id = "signin" action="/welcome/login" method = "POST" >
 		
 		
-			Email: <input type="text" id="email" name= "email" />
+			Email: <input type="email" id="email" name= "email" />
 		
 		
 		
 		
-			Password: <input type="text" id="password" name ="password"  />
+			Password: <input type="password" id="password" name ="password"  />
 		
 		
 		
-			<input type="submit" id="submit1" value="Login" onclick="window.location.href = 'http://localhost:8080/welcome/service';"  /> <input
+			<input type="submit" id="submit" value="Login"   /> <input
 				type="reset" value="Reset" />
 		
 		
 		<p>
-			<input type="button" id="btn1" class ="button" value="Welcome Page" onclick="window.location.href = 'http://localhost:8080/welcome';" /> <input/>
+			<input type="button" id="btn1" class ="button" value="Welcome Page" onclick="window.location.href = 'http://localhost:8080/profile';" /> <input/>
 		</p>
 	</form>
 	
 	<form id = "userinfo" action="">
 	
 	<h1>Result</h1>
-   userId: <input type="text" id="userId" name= "UserId" />
-		
-	businessName: <input type="text" id="businessName" name ="businessName"  />
-	
-	Email: <input type="text" id="email" name= "email" />
-	cost: <input type="text" id="cost" name ="cost"  />
+<span>UserID:</span> <?php echo $row1['returnValue_userId']; ?>
+<span>Business Name:</span> <?php echo $row1['returnValue_businessName']; ?>
+<span>Email:</span> <?php echo $row1['returnValue_email']; ?>
+<span>Category:</span> <?php echo $row1['returnValue_category']; ?>
     
 	</form>
 	
 </body>
-
 <script type="text/javascript">
    
 	function showAlert(){
@@ -54,17 +50,38 @@
   
     }
     
-    
+    jQuery(document).ready(function($) {
     	 
-		$("#submit1").submit(function(){
-			
-			showAlert();
+		$("#submit").click(function(){
 			
 			
-			
-			
+			var serviceProviderData = {};
+	
+			serviceProviderData["email"] = $("#email").val();
 		
+			
+			var email= $("#email").val();
+			
+			
+			$.ajax({
+				type : "GET",
+				contentType : "application/json",
+				url : "http://localhost:8080/welcome/" + email,
+				data : serviceProviderData,
+					
+				success : function(response){
+					console.log(response);
+				    alert('success');
+				  },
+				error: function(){
+				    alert('failure');
+				 
+				    
+				  }
+			});
 		});
  
 	});</script>
+					
+
 </html>

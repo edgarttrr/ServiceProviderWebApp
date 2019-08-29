@@ -1,6 +1,6 @@
-package com.appInNowBeta.app.ws.ui.model.response;
+package com.appInNowBeta.app.ws.ui.model.request;
 
-public class CalendarInfo {
+public class CalendarDetailsRequestModel {
 
 	private String userId;
 	private String businessName;
@@ -92,6 +92,5 @@ public class CalendarInfo {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
 	
 }

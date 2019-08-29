@@ -1,8 +1,5 @@
 <!DOCTYPE HTML>
-<!--
-	
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
@@ -18,28 +15,11 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<h1><a href="index.html">Appointment In Now</a> by ETR</h1>
-					<nav id="nav">
+					<h1><a href="http://localhost:8080/welcome">Appointment In Now</a> by ETR</h1>
+				<nav id="nav">
 						<ul>
-						<!--	<li><a href="index.html">Home</a></li>
-							<li>
-						 <a href="#" class="icon fa-angle-down">Discover</a>
-								<ul>
-									<li><a href="generic.html">Generic</a></li>
-									<li><a href="contact.html">Contact</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul> 
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
-											<li><a href="#">Option Three</a></li>
-											<li><a href="#">Option Four</a></li>
-										</ul>
-									</li>
-								</ul> -->
-							</li>
-							<li><a href="#footer" class="button" onclick="window.location.href = 'http://localhost:8080/welcome/users';">Register Now</a></li>
+							<li><a href="http://localhost:8080/welcome/signin" class="button" onclick="window.location.href = 'http://localhost:8080/welcome/signin';">Sign In</a></li>
+							<li><a href="http://localhost:8080/welcome/register" class="button" onclick="window.location.href = 'http://localhost:8080/welcome/register';">Register Now</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -62,11 +42,11 @@
 							<h2>Introducing the ultimate web application
 							<br />
 							for advertising and booking service based appointments</h2>
-							<p><b>THE SMALL BUSINESS PROBLEM:</b> Small business needs the ability to advertise open appointments for the day that have been left open. It's hard to fill in same day appointments with walk-ins only. 
+							<p><b>THE SMALL BUSINESS PROBLEM:</b> Small business need the ability to advertise open same day appointments for the day. It's hard to fill in same day appointments with walk-ins only. 
 
 <br><br><b>FINDING SAME DAY APPOINTMENTS:</b> It's hard and time-consuming calling multiple businesses asking for their availability, cost, and quality.  
 
-<br><br><b>Solution:</b> ApptInNow.com gives small business the ability to market same day appointments to the public while letting the public to access those appointments in a convenient and simple web app that is adaptable for mobile and PC users. 
+<br><br><b>Solution:</b> ApptInNow.com gives small business the ability to market same day appointments to the public while letting the public to access those appointments in a convenient and simple web application that is adaptable for mobile and PC users. 
 </p>
 						</header>
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -76,16 +56,16 @@
 						<div class="features-row">
 							<section>
 								<span class="icon major fa-bolt accent2"></span>
-								<h3>Small Business/ Public use</h3>
+								<h3>How It Works</h3>
 								<p><b>Small Business:</b> All Small business will have to register with a preset template that ask for 
-								 business name, address, phone, email, general cost, web site, and yelp link.
+								 business name, address, phone, email, general cost, website, and yelp link.
 								 <br><br><b>The Public:</b> No registration needed they can choose service type and then view available appointments from small business</p>
 							</section>
 							<section>
 								<span class="icon major fa-area-chart accent3"></span>
-								<h3>Calendar setup/appointment setup</h3>
-								<p><b>Small Business:</b> Once registration template is setup, the small business will have the option to choose a custom calendar that meets their needs and then publishing the availability using the chosen calendar 
-								 <br><br><b>The Public:</b> Once a appointment has been chosen, the customer will have the choice to enter his her her email to be contacted by the business owner for any potential changes and appointment reminder.</p>
+								<h3>Appointment Setup</h3>
+								<p><b>Small Business:</b> Once registration template is completed, the small business will have the option to publish their availability using HTML date and time picker 
+								 <br><br><b>The Public:</b> Once a appointment has been chosen, the customer will have to enter his and her email to be contacted by the business owner for any potential changes and or appointment reminder.</p>
 							</section>
 						</div>
 						<div class="features-row">
@@ -99,7 +79,7 @@
 							<section>
 								<span class="icon major fa-lock accent5"></span>
 								<h3>Security and Customer Protection</h3>
-								<p>Amazon web services will also provide the encryption and user authentication to maintain all users information and exchange of information safe.</p>
+								<p>Spring Security services will also provide the encryption and user authentication to maintain all users information and exchange of information safe.</p>
 							</section>
 						</div>
 					</section>
@@ -110,7 +90,7 @@
 							<section class="box special">
 								<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
 								<h3>Tech Stack/Implementation Tools</h3>
-								<p>Eclipse: IDE(integrated development environment), 
+								<p>Eclipse(spring Tool Suite): IDE(integrated development environment), 
 								<br><br>Maven: is a build automation tool that
 								allows a project to build using its project 
 								object model (POM) and a set of plugins that are shared by 
@@ -119,10 +99,10 @@
 								and JavaServer Pages (JSP) to promote an effective Java server 
 								environment.
 								<br><br>Amazon Web Services: A few AWS are being used which are EC2 sever,
-								 DynamoDB database, Amazon Cognito User Pool for authentication. 
+								 DynamoDB database,  
 								 <br><br>Trello: Project management software that allows me to keep track
 								 of current builds and needed timely objectives. 
-								  <br><br>SpringMVC: The Spring Web MVC framework provides Model-View-Controller (MVC) 
+								  <br><br>Spring Framework: The Spring Web MVC framework provides Model-View-Controller (MVC) 
 								 architecture and ready components that can be used to develop flexible and
 								  loosely coupled web applications. The MVC pattern results in separating the 
 								  different aspects of the application (input logic, business logic, and UI logic), 
@@ -195,14 +175,14 @@
 		</div>
 
 		<!-- Scripts -->
-			<script th:src="@{assets/js/jquery.min.js}"></script>
-			<script th:src="@{assets/js/jquery.dropotron.min.js}"></script>
-			<script th:src="@{assets/js/jquery.scrollex.min.js}"></script>
-			<script th:src="@{assets/js/browser.min.js}"></script>
-			<script th:src="@{assets/js/breakpoints.min.js}"></script>
-			<script th:src="@{assets/js/util.js}"></script>
-			<script th:src="@{assets/js/main.js}"></script>
-			
+			<!-- <script type="text/javascript" src="/js/userFlow.js"></script> -->
+			<script type="text/javascript" src="/js/jquery.min.js"></script>
+			<script type="text/javascript" src="/js/jquery.dropotron.min.js"></script>
+			<script type="text/javascript" src="/js/jquery.scrollex.min.js"></script>
+			<script type="text/javascript" src="/js/browser.min.js"></script>
+			<script type="text/javascript" src="/js/breakpoints.min.js"></script>
+			<script type="text/javascript" src="/js/util.js"></script>
+			<script type="text/javascript" src="/js/main.js"></script>
 
 	</body>
 </html>

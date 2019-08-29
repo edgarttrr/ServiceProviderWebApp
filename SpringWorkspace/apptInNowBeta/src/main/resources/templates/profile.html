@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+
+<html >
+
+	<head>
+		<link rel="stylesheet" href="/css/userFlow.css" />
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" type="text/javascript"></script>
+		
+		<title>ApptInNow</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/css/main.css" />
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  		 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+		  
+		  							<style>
+									p{
+									  margin:0;
+									  padding:0;
+									}
+									</style>
+									<style>
+									div{
+									  margin:0;
+									  padding:0;
+									}
+									</style>
+									
+		  
+
+
+	</head>
+	<body class="landing is-preload" onload="loadData()">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header" class="alt">
+					<h1><a href="http://localhost:8080/welcome">Appointment In Now</a> by ETR</h1>
+					<nav id="nav">
+						<ul>
+				
+							<li><a href="http://localhost:8080/welcome" class="button" onclick="window.location.href = 'http://localhost:8080/welcome/register';">Log out</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Banner -->
+				<section id="banner">
+					<h2>ApptInNow.com</h2>
+					<p>Marketing small business appointments and giving Users appointments NOW!!!</p>
+					<!--<ul class="actions special">
+						<li><a href="#" class="button primary">Sign Up</a></li>
+						<li><a href="#" class="button">Learn More</a></li>
+					</ul> -->
+				</section>
+
+			<!-- Main -->
+			
+
+					<section class="box special">
+						
+								<form id="msform"  >
+								  <!-- progressbar -->
+								 
+								  <!-- fieldsets -->
+								  <fieldset>
+								    <h2 class="fs-title">Welcome</h2>
+								    <h3 class="fs-subtitle">Your Business Details</h3>
+								 	
+    							
+									
+									<label for="userId">Account Id:</label>
+     								 <input type="text" id="userId" readonly>
+     								 
+									<label for="businessName">Business Name:</label>
+     								 <input type="text" id="businessName"  readonly>
+     								 
+     								 <label for="email">Email:</label>
+     								 <input type="text" id="email" readonly>
+     								 
+     								 <label for="yelpLink">Yelp/Website:</label>
+     								 <input type="text" id="yelpLink" readonly>
+     								 
+     								 <label for="phoneNumber">Phone:</label>
+     								 <input type="text" id="phoneNumber"readonly>
+     								 
+     								 <label for="zipCode">ZipCode:</label>
+     								 <input type="text" id="zipCode" readonly>
+     								 
+     								 <label for="cost">Cost:</label>
+     								 <input type="text" id="cost" readonly>
+    																    
+								    <input type="button"  class="next action-button" value="advertise appts" name="next" />
+								    <input type="button"  class="next action-button" value="Edit Detials" name="edit" />
+								    <input type="button"  class="next action-button" value="View appts" name="edit" />
+								  </fieldset>
+								  <fieldset>
+								    <h2 class="fs-title">Advertise Appointments</h2>
+								     <h3 class="fs-subtitle">choose dates and times you would like to publish</h3>
+								    
+									<label for="category">Category:</label>
+     								 <input type="text" id="category" readonly>
+     								 
+										<input id="datepicker" placeholder="choose date" />
+
+								   		 <script type="text/javascript" >
+								   		var dateToday = new Date(); 
+								   		$(function() {
+								   		    $( "#datepicker" ).datepicker({
+								   		        numberOfMonths: 1,
+								   		        showButtonPanel: true,
+								   		        minDate: dateToday
+								   		      
+								   		        
+								   		    });
+								   		});
+
+										  </script>		
+										  
+										  <input class="timepicker" id="timepicker" placeholder="choose time" />			
+										  <script type="text/javascript">
+										  $('.timepicker').timepicker({
+									   		    timeFormat: 'h:mm p',
+									   		    interval: 15,
+									   		    minTime: '6:00am',
+									   		    maxTime: '11:45pm',
+									   		    defaultTime: '00:00',
+									   		    startTime: '12::00am',
+									   		    dynamic: false,
+									   		    dropdown: true,
+									   		    scrollbar: false
+									   		});</script>
+								    
+								    <input type="button" id="previous" class="previous action-button" value="Previous" />
+								    <input type="button"  class="next action-button" value="Publish" name="next" id="publish" />
+								  </fieldset>
+								  
+								  <fieldset>
+								    <h2 class="fs-title">Current appt</h2>
+								     <h3 class="fs-subtitle">List of active appointments</h3>
+								     <table class="table1">
+									    <tr>
+									        <th>Category</th>
+									        <th>Open Appt Date</th>
+									        <th>Time</th>
+									        <th>Cost</th>
+									        <th>Zip Code</th>
+									    </tr>
+									</table>
+								    <!-- <input type="text" id="cost" placeholder="average cost of your services in dollar signs $1-25 $$25-75 $$$76-450 $$$$>45" /> -->
+								   <!--  <input type="text" id="category" placeholder="Category" /> -->
+								   
+
+								    <input type="button" name="previous" class="previous action-button" value="add more" />
+								    <input type="button" value= "Profile" id ="submit" class="next action-button" onclick="window.location.href = 'http://localhost:8080/welcome/profile';"  />
+								  </fieldset>
+								 
+								</form>
+					</section>
+
+					
+	<script type="text/javascript">
+   	
+	
+	
+	function loadData(){
+		var pathArray = window.location.pathname.split('/');
+		var url = "http://localhost:8080/welcome/logon/" + pathArray[3];
+		
+		$.ajax({
+			  url: url,
+			  dataType: "json",
+			  success: function (data) {
+			    
+				  	
+				  var  string1 = JSON.stringify(data.userId);
+				  var userId = string1.replace(/^"(.*)"$/, '$1');
+				  document.getElementById("userId").value = userId;
+				  
+				  var  string2 = JSON.stringify(data.businessName);
+				  var businessName = string2.replace(/^"(.*)"$/, '$1');
+				  document.getElementById("businessName").value = businessName;
+				  
+				   var  string3 = JSON.stringify(data.cost);
+				  var cost = string3.replace(/^"(.*)"$/, '$1');
+				  document.getElementById("cost").value = cost;
+				  
+				  var  string4 = JSON.stringify(data.email);
+				  var email = string4.replace(/^"(.*)"$/, '$1');
+				  document.getElementById("email").value = email;
+				  
+				  var  string5 = JSON.stringify(data.phoneNumber);
+				  var phoneNumber = string5.replace(/^"(.*)"$/, '$1');
+				  document.getElementById("phoneNumber").value = phoneNumber;
+				  
+				  var  string6 = JSON.stringify(data.yelpLink);
+				  var yelpLink = string6.replace(/^"(.*)"$/, '$1');
+				  document.getElementById("yelpLink").value = yelpLink;
+				  
+				  var  string7= JSON.stringify(data.zipCode);
+				  var zipCode = string7.replace(/^"(.*)"$/, '$1');
+				  document.getElementById("zipCode").value = zipCode; 
+				  
+				  var  string8= JSON.stringify(data.category);
+				  var category = string8.replace(/^"(.*)"$/, '$1');
+				  document.getElementById("category").value = category; 
+				  
+				  
+				  
+				  
+			    
+			  }
+			});
+		
+	      
+  
+    }
+    
+	jQuery(document).ready(function($) {
+		
+		var pathArray = window.location.pathname.split('/');
+		var url = "http://localhost:8080/welcome/calendar/" + pathArray[3];
+    	 
+		$("#publish").click(function(){
+			
+		
+			var serviceProviderData = {};
+			serviceProviderData["userId"] = $("#userId").val();
+			serviceProviderData["businessName"] = $("#businessName").val();
+			serviceProviderData["zipCode"] = $("#zipCode").val();
+			serviceProviderData["phoneNumber"] = $("#phoneNumber").val();
+			serviceProviderData["email"] = $("#email").val();
+			serviceProviderData["yelpLink"] = $("#yelpLink").val();
+			serviceProviderData["cost"] = $("#cost").val();
+			serviceProviderData["category"] = $("#category").val();
+			serviceProviderData["datepicker"] = $("#datepicker").val();
+			serviceProviderData["timepicker"] = $("#timepicker").val();
+		
+			
+			
+			$.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "/welcome/calendar",
+				data : JSON.stringify(serviceProviderData),
+				dataType : 'json',				
+				success : function(data) {
+					
+					
+				}
+			});
+		});
+		
+		
+		$("#publish").click(function(){
+			$.ajax({
+				  url: url,
+				  dataType: "json",
+				  success: function (data) {
+					 
+					  var tr = data.report
+		                for (var i = 0; i < data.length; i++) {
+		                    tr = $('<tr/>');
+		                    tr.append("<td>" + data[i].category+ "</td>");
+		                    tr.append("<td>" + data[i].datepicker+ "</td>");
+		                    tr.append("<td>" + data[i].timepicker+ "</td>");
+		                    tr.append("<td>" + data[i].cost+ "</td>");
+		                    tr.append("<td>" + data[i].zipCode+ "</td>");
+
+		                 
+		                    $('.table1').append(tr);
+		                }
+				  }
+				  });
+		});
+	});</script>
+					
+
+
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+					
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Open Source.</li><li>Design: <a href="http://ApptInNow.com">ApptInNow.com</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+
+
+
+
+
+
+<!--  form flow -->
+<script type="text/javascript" src="/js/userFlow.js"></script>
+
+		<!-- Mainpage -->
+			<!-- <script type="text/javascript" src="/js/userFlow.js"></script> -->
+			<!-- <script type="text/javascript" src="/js/jquery.min.js"></script> -->
+			<script type="text/javascript" src="/js/jquery.dropotron.min.js"></script>
+			<script type="text/javascript" src="/js/jquery.scrollex.min.js"></script>
+			<script type="text/javascript" src="/js/browser.min.js"></script>
+			<script type="text/javascript" src="/js/breakpoints.min.js"></script>
+			<script type="text/javascript" src="/js/util.js"></script>
+			<script type="text/javascript" src="/js/main.js"></script>
+
+	</body>
+</html>

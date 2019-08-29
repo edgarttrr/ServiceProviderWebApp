@@ -1,11 +1,13 @@
 package com.appInNowBeta.app.ws.ui.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,26 +15,35 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.appInNowBeta.app.ws.security.AuthenticationFilter;
-import com.appInNowBeta.app.ws.security.AuthorizationFilter;
-import com.appInNowBeta.app.ws.security.SecurityConstants;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.appInNowBeta.app.ws.io.entity.CalendarEntity;
 import com.appInNowBeta.app.ws.service.UserService;
 import com.appInNowBeta.app.ws.shared.dto.CalendarDto;
 import com.appInNowBeta.app.ws.shared.dto.UserDto;
+import com.appInNowBeta.app.ws.ui.model.request.CalendarDetailsRequestModel;
 import com.appInNowBeta.app.ws.ui.model.request.UserDetailsRequestModel;
-import com.appInNowBeta.app.ws.ui.model.response.AutherizationInfo;
+
 import com.appInNowBeta.app.ws.ui.model.response.CalendarInfo;
 import com.appInNowBeta.app.ws.ui.model.response.UserInfo;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
+
+// security imports
+//import com.appInNowBeta.app.ws.SpringApplicationContext;
+//import com.appInNowBeta.app.ws.security.SecurityConstants;
+//import io.jsonwebtoken.Jwts;
+//import io.jsonwebtoken.SignatureAlgorithm;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.AuthenticationException;
+//import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+
 
 @Controller
 //@RequestMapping("welcome")//http://localhost:8080/welcome
@@ -43,70 +54,57 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("welcome/users")
+	//user flow 
+	
+	
+	//welcome page to advertise to user
+	@GetMapping("welcome")
+	public String getWelcomePage()
+	{
+		
+		return "welcome.html";
+	}
+	
+	//HTML page to register new service provider
+	
+	@GetMapping("welcome/register")
 	public String getUserSignUpForm()
 	{
 		
-		return "users.html";
+		return "registrationPage.html";
 	}
 	
-	@GetMapping("welcome/calendar")
-	public String getcalendar()
-	{
-		
-		return "calendar";
-	}
-	
-
-	
-	@GetMapping("welcome/service")
-    public String greetingSubmit(@ModelAttribute UserInfo returnValue) {
-		
-		
-
-		return "service";
-        
-    }
-	
-//	@PostMapping("welcome/signIn")
-//	 protected AuthenticationFilter getAuthenticationFilter() throws Exception {
-////    	if (HttpMethod.POST != null) {
-////    		  
-//    	final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
-//	    filter.setFilterProcessesUrl("/welcome/signIn");
-//	    return filter;
-////    	}else {
-////    		final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
-////    	    filter.setFilterProcessesUrl("/welcome/nothing");
-////    	    return filter;
-////    	}
-//    	
-//    	
-//	}
 	
 	
 
-
-	@GetMapping("welcome/signIn")
+	// HTML page for returning users to sign in
+	@GetMapping("welcome/signin")
 	public String getLoginForm()
 	{
 		
-		return "login";
+		return "signin.html";
 	}
 	
-	@GetMapping("welcome/login")
-	public String getLogin()
-	{
+	
+	
+	@GetMapping("welcome/profile/{id}")
+	public String greetingSubmit(@ModelAttribute UserInfo greeting) {
 		
-		return "login";
+		return "profile.html";
 	}
 	
 
 	
 	
-	@GetMapping("welcome/login/{id}")
+	
+	
+
+	// To return user info the the HTML page
+	
+	@GetMapping("welcome/logon/{id}")
 	@ResponseBody
 	public UserInfo getUser(@PathVariable String id){
+		
 		
 		UserInfo returnValue = new UserInfo();
 		
@@ -117,20 +115,42 @@ public class UserController {
 		return returnValue;
 	}
 	
-
-	
-	@GetMapping("welcome")
-	public String getWelcomePage()
-	{
+	@GetMapping("welcome/calendar/{id}")
+	@ResponseBody
+	public List<CalendarEntity> getCalendar(@PathVariable String id){
 		
-		return "welcome.html";
+		
+		
+		List<CalendarEntity> Appointments = userService.findCalendarAppointmentsByUserId(id);
+		
+		
+		
+		return Appointments;
 	}
 	
+	@GetMapping("welcome/appointment/{category}")
+	@ResponseBody
+	public CalendarInfo getAppointment(@PathVariable String category){
+		
+		
+		CalendarInfo returnValue = new CalendarInfo();
+		
+		CalendarDto CalendarDto = userService.getCalendarByEmail(category);
+		
+		BeanUtils.copyProperties(CalendarDto,returnValue);
+		
+		return returnValue;
+	}
 	
-	@PostMapping("welcome/users")
+
+	
+	
+	
+	// Creating a new user in the database. 
+	@PostMapping("welcome/users" )
 	public UserInfo creatUser(@RequestBody UserDetailsRequestModel userDetails)
 	{
-		System.out.println("asdad");
+		
 		UserInfo returnValue = new UserInfo();
 		
 		UserDto userDto = new UserDto();
@@ -138,16 +158,16 @@ public class UserController {
 		
 		UserDto createdUser = userService.createUser(userDto);
 		BeanUtils.copyProperties(createdUser,  returnValue);
-		
-			
+	
 		return returnValue;
-		
 	}
 	
+	//creating a new appointment in the appointment table
 	@PostMapping("welcome/calendar")
-	public CalendarInfo createCalendar(@RequestBody UserDetailsRequestModel calendarDetials)
+	@ResponseBody
+	public CalendarInfo createCalendar(@RequestBody CalendarDetailsRequestModel calendarDetials)
 	{
-		System.out.println("asdad");
+		
 		CalendarInfo returnValue = new CalendarInfo();
 		
 		CalendarDto CalendarDto = new CalendarDto();

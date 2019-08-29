@@ -1,7 +1,7 @@
 package com.appInNowBeta.app.ws.service.impl;
 
 import java.util.ArrayList;
-
+import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -10,7 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.appInNowBeta.app.ws.io.entity.CalendarEntity;
 import com.appInNowBeta.app.ws.io.entity.UserEntity;
+import com.appInNowBeta.app.ws.io.repositories.CalendarRepository;
 import com.appInNowBeta.app.ws.io.repositories.UserRepository;
 import com.appInNowBeta.app.ws.service.UserService;
 import com.appInNowBeta.app.ws.shared.dto.CalendarDto;
@@ -23,6 +25,9 @@ import com.appInNowBeta.app.ws.shared.dto.Utils;
 @Service
 public class UserServiceImpl implements UserService {
 
+	@Autowired
+	CalendarRepository calendarRepository;
+	
 	@Autowired
 	UserRepository userRepository;
 	
@@ -90,8 +95,52 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public CalendarDto createCalendar(CalendarDto user) {
+		
+		
+		
+		CalendarEntity CalendarEntity = new CalendarEntity();
+		BeanUtils.copyProperties(user, CalendarEntity);
+		
+				
+		CalendarEntity storedUserDetails = calendarRepository.save(CalendarEntity);
+		
+		CalendarDto returnValue = new CalendarDto();
+		BeanUtils.copyProperties(storedUserDetails, returnValue);
+		
+		return returnValue;
+		
+	}
+
+	@Override
+	public CalendarDto getCalendarByEmail(String email) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public CalendarDto getCalendarByUserId(String userId) {
+		CalendarDto returnValue = new CalendarDto();
+		CalendarEntity CalendarEntity = calendarRepository.findCalendarByUserId(userId);
+		
+		if (CalendarEntity == null)throw new UsernameNotFoundException(userId);
+		
+		BeanUtils.copyProperties(CalendarEntity, returnValue);
+		return returnValue;
+	}
+
+	@Override
+	public List<CalendarEntity> findCalendarAppointmentsByUserId(String userId) {
+		
+		
+		
+		List<CalendarEntity> CalendarEntity = calendarRepository.findCalendarAppointmentsByUserId(userId);
+		
+		
+		
+		return CalendarEntity;
+	}
+
+
+
 
 }

@@ -46,15 +46,7 @@ public class UserEntity implements Serializable {
 	@Column(nullable = false, length = 100)
 	private String category;
 	
-	@Column(nullable = false, length = 100)
-	private String startTime;
-	
-	
-	@Column(nullable = false, length = 100)
-	private String apptSlots;
-	
-	@Column(nullable = false, length = 100)
-	private String endTime;
+
 
 	@Column(nullable = false)
 	private String EncryptedPassword;
@@ -63,29 +55,7 @@ public class UserEntity implements Serializable {
 	@Column(nullable = false)
 	private Boolean emailVerificationStatus = false;
 	
-	public String getStartTime() {
-		return startTime;
-	}
 
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-
-	public String getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
-
-	public String getApptSlots() {
-		return apptSlots;
-	}
-
-	public void setApptSlots(String apptSlots) {
-		this.apptSlots = apptSlots;
-	}
 
 
 	public long getId() {
